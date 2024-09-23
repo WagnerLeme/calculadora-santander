@@ -1,18 +1,18 @@
 import * as readlineSync from "readline-sync";
 
-function adicao(numero1: number, numero2: number): number {
+export function adicao(numero1: number, numero2: number): number {
   return numero1 + numero2;
 }
 
-function subtracao(numero1: number, numero2: number): number {
+export function subtracao(numero1: number, numero2: number): number {
   return numero1 - numero2;
 }
 
-function multiplicacao(numero1: number, numero2: number): number {
+export function multiplicacao(numero1: number, numero2: number): number {
   return numero1 * numero2;
 }
 
-function divisao(numero1: number, numero2: number): number {
+export function divisao(numero1: number, numero2: number): number {
   if (numero2 === 0) {
     throw new Error("Divisão por zero não é permitida");
   }
@@ -32,7 +32,7 @@ function mostrarMenu(): string {
   return escolha;
 }
 
-function operacaoEhValida(operacao: string) {
+export function operacaoEhValida(operacao: string) {
   let validas = ["1", "2", "3", "4"];
   return validas.includes(operacao);
 }
@@ -82,12 +82,14 @@ function executarCalculadora(): void {
   console.log("Calculadora encerrada.");
 }
 
-try {
-  executarCalculadora();
-} catch (error: unknown) {
-  if (error instanceof Error) {
-    console.error(error.message);
-  } else {
-    console.error("Ocorreu um erro desconhecido");
+if (require.main === module) {
+  try {
+    executarCalculadora();
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error("Ocorreu um erro desconhecido");
+    }
   }
 }
